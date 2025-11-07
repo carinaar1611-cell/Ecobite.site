@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Ecobites — Rastreabilidade</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>:root{--blue:#0047AB;--yellow:#FFF36B;--muted:#6b7280}</style>
+</head>
+<body class="bg-white text-[#0f172a]">
+
+  <header class="bg-white sticky top-0 z-40 border-b">
+    <div class="max-w-6xl mx-auto p-4 flex items-center justify-between">
+      <a href="index.html"><img src="assets/logo-dog.png" alt="logo" class="h-12"></a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-6">
+    <section class="bg-white rounded-2xl p-6 shadow">
+      <h1 class="text-3xl font-extrabold" style="color:var(--blue)">Rastreabilidade</h1>
+      <p class="text-sm text-[var(--muted)] mt-2">Insere o código do lote (ex.: <strong>EB2025-0034</strong>) ou escaneia o QR na embalagem.</p>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-2">
+          <label class="text-sm">Código do lote</label>
+          <input id="lotInput" class="w-full mt-2 p-3 border rounded-lg" placeholder="Ex.: EB2025-0034" />
+          <div class="mt-4">
+            <button id="checkBtn" class="bg-[var(--blue)] text-white px-4 py-2 rounded-lg">Verificar lote</button>
+            <button id="demoBtn" class="ml-2 px-4 py-2 border rounded-lg">Exemplo: EB2025-0034</button>
+          </div>
+
+          <div id="result" class="mt-6 hidden bg-gray-50 p-4 rounded-lg border"></div>
+        </div>
+
+        <div class="bg-[var(--yellow)] p-4 rounded-lg border">
+          <h4 class="font-semibold" style="color:var(--blue)">Como funciona</h4>
+          <ol class="list-decimal ml-6 mt-2 text-sm text-[#374151]">
+            <li>O QR aponta para esta página com ?lote=.</li>
+            <li>O sistema mostra origem, análises e impacto.</li>
+            <li>PDFs e certificados disponíveis para download.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-8 text-center text-sm text-[#6b7280] border-t">© Ecobites 2025</footer>
+
+  <script>
+    // carrega lotes.json
+    let LOTES = {};
+    fetch('lotes.json').then(r => r.ok ? r.json() : {}).then(data => { LOTES = data || {}; autoCheck(); }).catch(()=>{LOTES={};});
+
+    function render(data){
+      return `
+        <h3 class="text-xl font-semibold" style="color:var(--blue)">${data.lote} — Produção: ${data.producao}</h3>
+        <p class="mt-2 text-sm text-[#374151]"><strong>Total reaproveitado:</strong> ${data.totalReaproveitadoKg} kg</p>
+        <p class="text-sm text-[#374151]"><strong>CO₂ evitado (estim.):</strong> ${data.co2EvitadoKg} kg</p>
+        <div class="mt-3"><strong>Origem:</strong><ul class="list-disc ml-6 text-sm">${data.origem.map(o=>`<li><strong>${o.fornecedor}:</strong> ${o.itens}</li>`).join('')}</ul></div>
+        <div class="mt-3"><strong>Análises:</strong><ul class="list-disc ml-6 text-sm">${data.analises.map(a=>`<li><strong>${a.tipo}:</strong> ${a.resultado}</li>`).join('')}</ul></div>
+        <div class="mt-3 text-sm"><strong>Impacto social:</strong> ${data.ong}</div>
+        <div class="mt-4"><a class="px-3 py-2 bg-[var(--blue)] text-white rounded" href="${data.certificate || '#'}">Baixar certificado (PDF)</a></div>
+      `;
+    }
+
+    document.getElementById('checkBtn').addEventListener('click', ()=>{
+      const code = document.getElementById('lotInput').value.trim().toUpperCase();
+      const r = document.getElementById('result');
+      if(!code){ alert('Insere um código (ex.: EB2025-0034)'); return; }
+      r.classList.remove('hidden');
+      if(LOTES[code]) r.innerHTML = render(LOTES[code]); else r.innerHTML = '<p class="text-sm text-[#374151]">Lote não encontrado. Contacte info@ecobites.pt</p>';
+    });
+
+    document.getElementById('demoBtn').addEventListener('click', ()=>{
+      document.getElementById('lotInput').value = 'EB2025-0034';
+      document.getElementById('checkBtn').click();
+    });
+
+    // lê ?lote= e executa
+    function autoCheck(){
+      const params = new URLSearchParams(location.search);
+      const loteParam = params.get('lote');
+      if(loteParam){ document.getElementById('lotInput').value = loteParam.toUpperCase(); document.getElementById('checkBtn').click(); }
+    }
+  </script>
+</body>
+</html>

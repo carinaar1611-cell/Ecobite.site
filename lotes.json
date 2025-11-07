@@ -1,0 +1,61 @@
+{
+  "EB2025-0034": {
+    "lote": "EB2025-0034",
+    "producao": "12/03/2025",
+    "origem": [
+      { "fornecedor": "Cooperativa Serra Verde", "itens": "Aveia 30kg, Maçã 12kg" },
+      { "fornecedor": "Hortas Urbanas Lisboa", "itens": "Cenoura 23kg" }
+    ],
+    "totalReaproveitadoKg": 65,
+    "co2EvitadoKg": 120,
+    "analises": [
+      { "tipo": "Microbiologia", "resultado": "Aprovado (LabVet 2025/034)" },
+      { "tipo": "Nutrição", "resultado": "Proteína 24% • Fibra 5% • Gordura 10%" }
+    ],
+    "ong": "Animais com Futuro (12 cães alimentados)",
+    "certificate": "assets/certs/EB2025-0034.pdf"
+  },
+
+  "EB2025-0101": {
+    "lote": "EB2025-0101",
+    "producao": "02/05/2025",
+    "origem": [
+      { "fornecedor": "Mercado do Bolhão", "itens": "Pão integral 40kg" },
+      { "fornecedor": "Cooperativa Vale Verde", "itens": "Couve 20kg" }
+    ],
+    "totalReaproveitadoKg": 60,
+    "co2EvitadoKg": 105,
+    "analises": [ { "tipo": "Microbiologia", "resultado": "Aprovado" } ],
+    "ong": "Refugio do Porto (20 refeições)"
+  },
+
+  "EB2025-0115": {
+    "lote": "EB2025-0115",
+    "producao": "18/05/2025",
+    "origem": [{ "fornecedor": "Superverde - Lisboa", "itens": "Maçã e Pera 55kg" }],
+    "totalReaproveitadoKg": 55,
+    "co2EvitadoKg": 98,
+    "analises": [{ "tipo": "Nutrição", "resultado": "Proteína 20% • Fibra 6%" }],
+    "ong": "Gatos sem Fronteiras (15 refeições)"
+  },
+
+  "EB2025-0203": {
+    "lote": "EB2025-0203",
+    "producao": "02/06/2025",
+    "origem": [{ "fornecedor": "Padaria do Bairro", "itens": "Pão integral 60kg" }],
+    "totalReaproveitadoKg": 60,
+    "co2EvitadoKg": 110,
+    "analises": [{ "tipo": "Microbiologia", "resultado": "Aprovado" }],
+    "ong": "Abrigo da Cidade (25 refeições)"
+  },
+
+  "EB2025-0310": {
+    "lote": "EB2025-0310",
+    "producao": "15/07/2025",
+    "origem": [{ "fornecedor": "Cooperativa BioMontanha", "itens": "Abóbora e Cenoura 48kg" }],
+    "totalReaproveitadoKg": 48,
+    "co2EvitadoKg": 85,
+    "analises": [{ "tipo": "Nutrição", "resultado": "Proteína 22% • Fibra 5.5%" }],
+    "ong": "Associação Patinhas (10 refeições)"
+  }
+}

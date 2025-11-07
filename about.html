@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ecobites — Quem Somos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--blue:#0033A8;--blue-dark:#002366;--yellow:#FFF36B;}
+    h1,h2{font-family:Poppins,Inter;}
+  </style>
+</head>
+<body class="bg-[#fffefb] text-[#0f172a]">
+
+  <header class="bg-white sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto p-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="assets/logo-dog.png" alt="logo" class="h-12 object-contain">
+      </a>
+      <nav class="hidden md:flex gap-6">
+        <a href="index.html" class="text-sm">Início</a>
+        <a href="mission.html" class="text-sm">Missão</a>
+        <a href="products.html" class="text-sm">Produtos</a>
+        <a href="trace.html" class="text-sm">Rastreabilidade</a>
+        <a href="contact.html" class="text-sm bg-[var(--yellow)] text-[var(--blue-dark)] px-3 py-1 rounded">Contacto</a>
+      </nav>
+      <button id="mb" class="md:hidden">☰</button>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-6">
+    <section class="bg-white rounded-2xl p-8 shadow">
+      <h1 class="text-3xl font-extrabold" style="color:var(--blue)">Quem Somos</h1>
+      <p class="mt-4 text-[#374151]">A Ecobites nasceu em 2024 com um propósito claro: transformar excedentes alimentares — frutas, cereais e vegetais — em produtos seguros e nutritivos para animais de companhia. Reunimos nutricionistas, veterinários e produtores locais para criar um ciclo onde nada se perde e tudo tem valor.</p>
+
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-xl font-semibold" style="color:var(--blue-dark)">A nossa jornada</h3>
+          <p class="mt-2 text-[#6b7280]">Começámos mapeando fornecedores locais e testando processos. Desenvolvemos formulações que garantem perfil nutricional estável mesmo com variações naturais na matéria-prima.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold" style="color:var(--blue-dark)">Equipa</h3>
+          <p class="mt-2 text-[#6b7280]">A equipa Ecobites reúne veterinários, técnicos de produção, especialistas em sustentabilidade e designers de produtos, todos comprometidos com segurança e impacto social.</p>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <h3 class="text-xl font-semibold" style="color:var(--blue-dark)">Parcerias</h3>
+        <p class="mt-2 text-[#6b7280]">Trabalhamos com cooperativas, supermercados e ONGs locais para recolha, triagem e distribuição. Parte dos nossos lotes é doada a abrigos parceiros.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-8 text-center text-sm text-[#6b7280] border-t">
+    © 2025 Ecobites — <a href="index.html" class="text-[var(--blue)]">Voltar</a>
+  </footer>
+
+  <script>
+    document.getElementById('mb')?.addEventListener('click', ()=> location.href='index.html');
+  </script>
+</body>
+</html>

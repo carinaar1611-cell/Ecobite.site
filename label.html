@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mockup Rótulo Ecobites — gerar QR</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>:root{--blue:#0047AB;--yellow:#FFF36B}</style>
+</head>
+<body class="bg-white p-8">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold" style="color:var(--blue)">Gerador de rótulos — Ecobites</h2>
+    <p class="text-sm text-gray-600 mt-1">Escolhe um lote, gera o QR e faz download / screenshot para imprimir no rótulo.</p>
+
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
+      <div>
+        <label class="text-sm">Código do lote</label>
+        <input id="lot" class="w-full mt-2 p-3 border rounded" placeholder="EB2025-0034"/>
+        <div class="mt-3 flex gap-2">
+          <button id="gen" class="px-4 py-2 bg-[var(--blue)] text-white rounded">Gerar QR</button>
+          <button id="copyUrl" class="px-4 py-2 border rounded">Copiar URL</button>
+        </div>
+
+        <p class="text-xs text-gray-500 mt-2">O QR aponta para <code>trace.html?lote=CODIGO</code> — substitui pelo domain ao imprimir.</p>
+      </div>
+
+      <div class="p-4 border rounded-lg">
+        <div id="labelPreview" class="w-full h-72 bg-[var(--yellow)] rounded-lg p-4 flex flex-col items-center justify-between">
+          <img src="assets/logo-dog.png" alt="logo" class="h-20 object-contain"/>
+          <div id="qrWrap" class="text-center">
+            <img id="qr" src="" alt="QR code" class="w-36 h-36 mx-auto bg-white p-2 rounded"/>
+            <p class="text-sm mt-2 text-[var(--blue)]" id="previewText">Lote: —</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+function generateQR(url){
+  // Google Chart API: simples e sem autenticação
+  const encoded = encodeURIComponent(url);
+  return `https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${encoded}&choe=UTF-8`;
+}
+
+document.getElementById('gen').addEventListener('click', ()=>{
+  const lote = document.getElementById('lot').value.trim().toUpperCase();
+  if(!lote){ alert('Insere um código de lote'); return; }
+  // URL final apontando para a vossa página trace (substitui domain quando publicar)
+  const url = `${location.origin}${location.pathname.replace(/label\\.html$/, '')}trace.html?lote=${lote}`;
+  document.getElementById('qr').src = generateQR(url);
+  document.getElementById('previewText').innerText = `Lote: ${lote}`;
+});
+
+// copie URL para clipboard
+document.getElementById('copyUrl').addEventListener('click', ()=>{
+  const lote = document.getElementById('lot').value.trim().toUpperCase();
+  if(!lote){ alert('Insere um código'); return; }
+  const url = `${location.origin}${location.pathname.replace(/label\\.html$/, '')}trace.html?lote=${lote}`;
+  navigator.clipboard.writeText(url).then(()=> alert('URL copiada para a área de transferência'));
+});
+</script>
+</body>
+</html>
